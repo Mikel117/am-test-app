@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { useDispatch, useSelector } from 'react-redux';
+import charactersReducer from './characters/characters.slice';
 
 export const store = configureStore({
   reducer: {
+    characters: charactersReducer,
   },
 })
 

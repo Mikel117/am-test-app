@@ -3,6 +3,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface CharacterState {
     items: Character[]; 
+    favorites: Character[]; 
     characterSelected: Character | null;
     loading: boolean;
     error: string | null;
@@ -10,6 +11,7 @@ interface CharacterState {
 
 const initialState: CharacterState = {
   items: [],
+  favorites: [],
   characterSelected: null,
   loading: false,
   error: null,
@@ -45,6 +47,9 @@ export const charactersSlice = createSlice({
       const item = state.items.find((x) => x.id === action.payload.id);
       if (item) item.isFavorite = action.payload.isFavorite;
     },
+    setSelected(state, action: PayloadAction<{ character: Character }>) {
+      state.characterSelected = action.payload.character;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -55,6 +60,7 @@ export const charactersSlice = createSlice({
       .addCase(fetchCharacters.fulfilled, (state, action) => {
         state.loading = false;
         state.items = action.payload;
+        state.favorites = action.payload.filter((c) => c.isFavorite);
       })
       .addCase(fetchCharacters.rejected, (state, action) => {
         state.loading = false;
@@ -66,3 +72,6 @@ export const charactersSlice = createSlice({
   },
 
 });
+
+export const { setFavoriteLocal, setSelected } = charactersSlice.actions;
+export default charactersSlice.reducer;
