@@ -1,0 +1,30 @@
+.character-status-container {
+  display: flex;
+  background: #1a1a1a;
+  border-radius: 10px;
+  padding: 8px;
+  align-items: center;
+  gap: 8px;
+  opacity: 1;
+}
+
+.character-status-Alive {
+  background: radial-gradient(circle, #f1f510, #608f09);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+
+.character-status-Dead {
+  background: radial-gradient(circle, #E92507, #7C1616);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+
+.character-status-unknown {
+  background: radial-gradient(circle, #c2c2c2, #fff);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}

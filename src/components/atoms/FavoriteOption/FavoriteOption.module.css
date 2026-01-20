@@ -1,0 +1,14 @@
+.favorite-option-container {
+  background: #9c9c9c;
+  color: #fff;
+  padding: 5px 15px 5px 15px;
+  border: 1px solid #494949;
+  margin-top: 2px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.favorite-option-container:hover {
+  background: #7a7a7a;
+}

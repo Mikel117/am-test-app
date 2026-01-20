@@ -1,0 +1,24 @@
+.character-card-information-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    height: 290px;
+    width: 280px;
+    position: relative;
+}
+
+.character-information-status {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.character-information {
+    background: #000;
+    opacity: 0.6;
+}
+
+.character-card-information-details {
+    display: flex;
+    padding-top: 8px;
+}

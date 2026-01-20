@@ -1,0 +1,16 @@
+.favorites-dropdown-container {
+    padding: 5px;
+    background: #5B5454;
+    border-radius: 10px 10px 0 0;
+    h3 {
+        text-align: center;
+        cursor: pointer;
+    }
+}
+
+.favorites-dropdown-invisible {
+    display: flex;
+    width: 100%;
+    height: 20px;
+    cursor: pointer;
+}
