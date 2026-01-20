@@ -1,3 +1,3 @@
 // Interfaces
 
-export type { Character } from './interfaces/characters-reponse';
+export type { Character, CharacterChangeInformationRequest } from './interfaces/characters-reponse';

@@ -1,16 +1,16 @@
 {
   "characters": [
     {
-      "id": "1",
+      "id": 1,
       "name": "Rick Sanchez",
       "status": "Alive",
       "image": "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
       "species": "Human",
       "gender": "Male",
-      "isFavorite": true
+      "isFavorite": false
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "Morty Smith",
       "status": "Alive",
       "image": "https://rickandmortyapi.com/api/character/avatar/2.jpeg",
@@ -19,7 +19,7 @@
       "isFavorite": false
     },
     {
-      "id": "3",
+      "id": 3,
       "name": "Summer Smith",
       "status": "Alive",
       "image": "https://rickandmortyapi.com/api/character/avatar/3.jpeg",
@@ -28,7 +28,7 @@
       "isFavorite": false
     },
     {
-      "id": "4",
+      "id": 4,
       "name": "Beth Smith",
       "status": "Alive",
       "image": "https://rickandmortyapi.com/api/character/avatar/4.jpeg",
@@ -37,7 +37,7 @@
       "isFavorite": false
     },
     {
-      "id": "5",
+      "id": 5,
       "name": "Jerry Smith",
       "status": "Alive",
       "image": "https://rickandmortyapi.com/api/character/avatar/5.jpeg",
@@ -46,7 +46,7 @@
       "isFavorite": false
     },
     {
-      "id": "6",
+      "id": 6,
       "name": "Abadango Cluster Princess",
       "status": "Alive",
       "image": "https://rickandmortyapi.com/api/character/avatar/6.jpeg",
@@ -55,7 +55,7 @@
       "isFavorite": false
     },
     {
-      "id": "7",
+      "id": 7,
       "name": "Abradolf Lincler",
       "status": "unknown",
       "image": "https://rickandmortyapi.com/api/character/avatar/7.jpeg",
@@ -64,7 +64,7 @@
       "isFavorite": false
     },
     {
-      "id": "8",
+      "id": 8,
       "name": "Adjudicator Rick",
       "status": "Dead",
       "image": "https://rickandmortyapi.com/api/character/avatar/8.jpeg",
@@ -73,7 +73,7 @@
       "isFavorite": false
     },
     {
-      "id": "9",
+      "id": 9,
       "name": "Agency Director",
       "status": "Dead",
       "image": "https://rickandmortyapi.com/api/character/avatar/9.jpeg",
@@ -82,7 +82,7 @@
       "isFavorite": false
     },
     {
-      "id": "10",
+      "id": 10,
       "name": "Alan Rails",
       "status": "Dead",
       "image": "https://rickandmortyapi.com/api/character/avatar/10.jpeg",
@@ -91,7 +91,7 @@
       "isFavorite": false
     },
     {
-      "id": "11",
+      "id": 11,
       "name": "Albert Einstein",
       "status": "Dead",
       "image": "https://rickandmortyapi.com/api/character/avatar/11.jpeg",
@@ -100,7 +100,7 @@
       "isFavorite": false
     },
     {
-      "id": "12",
+      "id": 12,
       "name": "Alexander",
       "status": "Dead",
       "image": "https://rickandmortyapi.com/api/character/avatar/12.jpeg",
@@ -109,7 +109,7 @@
       "isFavorite": false
     },
     {
-      "id": "13",
+      "id": 13,
       "name": "Alien Googah",
       "status": "unknown",
       "image": "https://rickandmortyapi.com/api/character/avatar/13.jpeg",
@@ -118,7 +118,7 @@
       "isFavorite": false
     },
     {
-      "id": "14",
+      "id": 14,
       "name": "Alien Morty",
       "status": "unknown",
       "image": "https://rickandmortyapi.com/api/character/avatar/14.jpeg",
@@ -127,7 +127,7 @@
       "isFavorite": false
     },
     {
-      "id": "15",
+      "id": 15,
       "name": "Alien Rick",
       "status": "unknown",
       "image": "https://rickandmortyapi.com/api/character/avatar/15.jpeg",
@@ -136,7 +136,7 @@
       "isFavorite": false
     },
     {
-      "id": "16",
+      "id": 16,
       "name": "Amish Cyborg",
       "status": "Dead",
       "image": "https://rickandmortyapi.com/api/character/avatar/16.jpeg",
@@ -145,7 +145,7 @@
       "isFavorite": false
     },
     {
-      "id": "17",
+      "id": 17,
       "name": "Annie",
       "status": "Alive",
       "image": "https://rickandmortyapi.com/api/character/avatar/17.jpeg",
@@ -154,7 +154,7 @@
       "isFavorite": false
     },
     {
-      "id": "18",
+      "id": 18,
       "name": "Antenna Morty",
       "status": "Alive",
       "image": "https://rickandmortyapi.com/api/character/avatar/18.jpeg",
@@ -163,7 +163,7 @@
       "isFavorite": false
     },
     {
-      "id": "19",
+      "id": 19,
       "name": "Antenna Rick",
       "status": "unknown",
       "image": "https://rickandmortyapi.com/api/character/avatar/19.jpeg",
@@ -172,7 +172,7 @@
       "isFavorite": false
     },
     {
-      "id": "20",
+      "id": 20,
       "name": "Ants in my Eyes Johnson",
       "status": "unknown",
       "image": "https://rickandmortyapi.com/api/character/avatar/20.jpeg",
