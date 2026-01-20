@@ -16,7 +16,7 @@ async function main() {
 
   const characters = allResults.map(
     ({ id, name, status, image, species, gender }) => ({
-      id,
+      id: Number(id),
       name,
       status,
       image,
