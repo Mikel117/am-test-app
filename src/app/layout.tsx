@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Providers } from "@/store/Providers";
 import { TitleImage } from "@/components";
+import { SWRProvider } from "@/store/SWRProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,9 +19,11 @@ export default function RootLayout({
       <body>
         <div className="app-container">
           <TitleImage />
-          <Providers>
-            {children}
-          </Providers>
+          <SWRProvider>
+            <Providers>
+              {children}
+            </Providers>
+          </SWRProvider>
         </div>
       </body>
     </html>
