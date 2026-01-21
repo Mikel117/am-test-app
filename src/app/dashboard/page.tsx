@@ -1,11 +1,10 @@
 "use client";
 
-import { Button, CharacterCardInformation } from "@/components";
+import { CharacterCardInformation } from "@/components";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { fetchCharacters } from "@/store/characters/characters.slice";
 import { useEffect } from "react";
 import styles from "./page.module.css";
-import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 import { useCharacters } from "@/hooks/useCharacters";
 
 export default function CharacterPage() {
