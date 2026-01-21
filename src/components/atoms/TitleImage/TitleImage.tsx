@@ -10,9 +10,10 @@ export const TitleImage = ({ width = 332, height = 95 }: Props) => {
     <div>
         <Image
             src="/images/rick-and-morty-title.jpg"
-            alt={"Rick and Morty Title Image"}
+            alt="Logo de Rick and Morty - Título principal de la serie"
             width={width}
             height={height}
+            priority
         />
     </div>
   )

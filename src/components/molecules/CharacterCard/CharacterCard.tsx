@@ -29,7 +29,7 @@ export const CharacterCard = ({ name, image, isFavorite, isSelected, id, onClick
         <span>{name}</span>
         <Image 
           src={image} 
-          alt={name} 
+          alt={`Imagen del personaje ${name} de Rick and Morty`}
           width={100} 
           height={100} 
           onClick={onClick}

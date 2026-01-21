@@ -116,6 +116,8 @@ export const CharacterCardInformation = ({ character }: Props) => {
             cursor: isDragging ? "grabbing" : "grab",
             userSelect: "none",
           }}
+          role="img"
+          aria-label={`Imagen de fondo del personaje ${character?.name}`}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
