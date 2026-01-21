@@ -6,10 +6,12 @@
     border: 2px solid transparent;
     border-radius: 30px;
     background-color: #212121;
-    height: 170px;
+    justify-content: center;
     width: 140px;
     gap: 5px;
     transition: all 0.3s ease;
+    text-align: center;
+    gap: 10px;
     div, img {
         cursor: pointer;
     }

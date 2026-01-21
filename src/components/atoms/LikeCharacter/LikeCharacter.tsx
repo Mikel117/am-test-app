@@ -3,13 +3,14 @@ import styles from "./LikeCharacter.module.css";
 
 interface Props {
     isFavorite: boolean;
+    onClick?: () => void;
 }
 
-export const LikeCharacter = ({ isFavorite }: Props) => {
+export const LikeCharacter = ({ isFavorite, onClick }: Props) => {
   return (
     <div className={styles['favorite-character']}>
         {
-            isFavorite ? <IoHeart size={20} color='red' /> : <IoHeartOutline size={20} />
+            isFavorite ? <IoHeart size={20} color='red' onClick={onClick} /> : <IoHeartOutline size={20} onClick={onClick} />
         }
         <span>Like</span>
     </div>

@@ -1,7 +1,7 @@
 import styles from './CharacterStatus.module.css';
 
 interface Props {
-    status: 'Dead' | 'Alive' | 'unknown';
+    status: string | 'Dead' | 'Alive' | 'unknown';
 }
 
 export const CharacterStatus = ({ status }: Props) => {

@@ -1,3 +1,10 @@
+.characterCardInformation {
+    position: relative;
+    display: flex;
+    height: 290px;
+    align-items: center;
+}
+
 .character-card-information-container {
     display: flex;
     flex-direction: column;
@@ -5,6 +12,7 @@
     height: 290px;
     width: 280px;
     position: relative;
+    border-radius: 20px;
 }
 
 .character-information-status {
@@ -16,9 +24,12 @@
 .character-information {
     background: #000;
     opacity: 0.6;
+    padding: 10px;
+    border-radius: 0 0 20px 20px;
 }
 
 .character-card-information-details {
     display: flex;
     padding-top: 8px;
+    gap: 15px;
 }

@@ -1,9 +1,15 @@
 .button-container{
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: #909090;
     color: #ffffff;
     border-radius: 4px;
-    padding: 10px;
+    padding: 0;
     cursor: pointer;
+    border: none;
 }
 
 .button-container:hover{
@@ -12,4 +18,13 @@
 
 .button-container:active{
     background: #5B5454B2;
+}
+
+.button-container:disabled{
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.button-container:disabled:hover{
+    color: #ffffff;
 }

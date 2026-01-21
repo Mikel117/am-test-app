@@ -2,10 +2,10 @@
 
 import { CharacterCard, Input } from "@/components";
 import { useAppDispatch, useAppSelector } from "@/store";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from "./SearchGrid.module.css";
 import { Character } from "@/characters/interfaces/characters-reponse";
-import { setSelected } from "@/store/characters/characters.slice";
+import { setSelected, setFilteredCharacters } from "@/store/characters/characters.slice";
 
 export const SearchGrid = () => {
   const dispatch = useAppDispatch();
@@ -15,6 +15,11 @@ export const SearchGrid = () => {
   const [itemsPerPage, setItemsPerPage] = useState(4);
   const [direction, setDirection] = useState<'next' | 'prev' | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const previousSelectedId = useRef<number | null>(null);
+  const isManualNavigation = useRef(false);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+  const [isDragging, setIsDragging] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -38,6 +43,29 @@ export const SearchGrid = () => {
     character.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  useEffect(() => {
+    dispatch(setFilteredCharacters({ characters: filteredCharacters }));
+  }, [filteredCharacters, dispatch]);
+
+  useEffect(() => {
+    if (selectedCharacter && previousSelectedId.current !== selectedCharacter.id && !isManualNavigation.current) {
+      previousSelectedId.current = selectedCharacter.id;
+      
+      const selectedIndex = filteredCharacters.findIndex(
+        (c) => c.id === selectedCharacter.id
+      );
+      
+      if (selectedIndex !== -1) {
+        const selectedPage = Math.floor(selectedIndex / itemsPerPage);
+        if (selectedPage !== currentPage) {
+          // eslint-disable-next-line react-hooks/set-state-in-effect
+          setCurrentPage(selectedPage);
+        }
+      }
+    }
+    isManualNavigation.current = false;
+  }, [selectedCharacter, filteredCharacters, itemsPerPage, currentPage]);
+
   const totalPages = Math.ceil(filteredCharacters.length / itemsPerPage);
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -45,6 +73,7 @@ export const SearchGrid = () => {
 
   const handleNext = () => {
     if (currentPage < totalPages - 1) {
+      isManualNavigation.current = true;
       setDirection('next');
       setCurrentPage((prev) => prev + 1);
     }
@@ -52,6 +81,7 @@ export const SearchGrid = () => {
 
   const handlePrev = () => {
     if (currentPage > 0) {
+      isManualNavigation.current = true;
       setDirection('prev');
       setCurrentPage((prev) => prev - 1);
     }
@@ -66,10 +96,75 @@ export const SearchGrid = () => {
     setCurrentPage(0);
   };
 
+  // Detección de swipe para táctil
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX.current - touchEndX.current > 75) {
+      // Swipe izquierda -> siguiente
+      handleNext();
+    }
+
+    if (touchStartX.current - touchEndX.current < -75) {
+      // Swipe derecha -> anterior
+      handlePrev();
+    }
+  };
+
+  // Soporte para mouse (arrastrar)
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setIsDragging(true);
+    touchStartX.current = e.clientX;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (isDragging) {
+      touchEndX.current = e.clientX;
+    }
+  };
+
+  const handleMouseUp = () => {
+    if (!isDragging) return;
+    setIsDragging(false);
+
+    if (touchStartX.current - touchEndX.current > 75) {
+      // Arrastrar izquierda -> siguiente
+      handleNext();
+    }
+
+    if (touchStartX.current - touchEndX.current < -75) {
+      // Arrastrar derecha -> anterior
+      handlePrev();
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsDragging(false);
+  };
+
   return (
     <div className={styles.container}>
       <Input value={searchTerm} onChange={handleSearch} />
-      <div className={`${styles.grid} ${direction === 'next' ? styles.slideNext : ''} ${direction === 'prev' ? styles.slidePrev : ''}`}>
+      <div 
+        className={`${styles.grid} ${direction === 'next' ? styles.slideNext : ''} ${direction === 'prev' ? styles.slidePrev : ''}`}
+        style={{
+          cursor: isDragging ? "grabbing" : "grab",
+          userSelect: "none",
+        }}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseLeave}
+      >
         {currentCharacters.map((character) => (
           <CharacterCard
             key={character.id}
@@ -77,12 +172,13 @@ export const SearchGrid = () => {
             image={character.image}
             isFavorite={character.isFavorite}
             isSelected={selectedCharacter?.id === character.id}
+            id={character.id}
             onClick={() => handleSelectCharacter(character)}
           />
         ))}
       </div>
       <div className={styles.pagination}>
-        <button
+        {/* <button
           className={styles.button}
           onClick={handlePrev}
           disabled={currentPage === 0}
@@ -98,7 +194,7 @@ export const SearchGrid = () => {
           disabled={currentPage === totalPages - 1}
         >
           Siguiente
-        </button>
+        </button> */}
       </div>
     </div>
   );

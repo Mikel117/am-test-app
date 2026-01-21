@@ -5,6 +5,9 @@ export interface Character {
   image: string;
   species: string;
   gender: string;
+  location: string;
+  origin: string;
+  episodes: number;
   isFavorite: boolean;
 }
 

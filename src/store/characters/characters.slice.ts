@@ -3,7 +3,8 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface CharacterState {
     items: Character[]; 
-    favorites: Character[]; 
+    favorites: Character[];
+    filteredCharacters: Character[];
     characterSelected: Character | null;
     loading: boolean;
     error: string | null;
@@ -12,6 +13,7 @@ interface CharacterState {
 const initialState: CharacterState = {
   items: [],
   favorites: [],
+  filteredCharacters: [],
   characterSelected: null,
   loading: false,
   error: null,
@@ -30,8 +32,8 @@ export const toggleFavorite = createAsyncThunk<
   { id: number; isFavorite: boolean },
   { id: number; isFavorite: boolean }
 >("characters/toggleFavorite", async ({ id, isFavorite }) => {
-  const res = await fetch(`/api/characters/${id}/favorite`, {
-    method: "PATCH",
+  const res = await fetch(`/api/characters/${id}`, {
+    method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ isFavorite }),
   });
@@ -43,12 +45,35 @@ export const charactersSlice = createSlice({
   name: "characters",
   initialState,
   reducers: {
-    setFavoriteLocal(state, action: PayloadAction<{ id: number; isFavorite: boolean }>) {
-      const item = state.items.find((x) => x.id === action.payload.id);
-      if (item) item.isFavorite = action.payload.isFavorite;
-    },
     setSelected(state, action: PayloadAction<{ character: Character }>) {
       state.characterSelected = action.payload.character;
+    },
+    setFilteredCharacters(state, action: PayloadAction<{ characters: Character[] }>) {
+      state.filteredCharacters = action.payload.characters;
+    },
+    selectNextCharacter(state, action: PayloadAction<{ filteredCharacters: Character[] }>) {
+      const { filteredCharacters } = action.payload;
+      if (!state.characterSelected || filteredCharacters.length === 0) return;
+      
+      const currentIndex = filteredCharacters.findIndex(
+        (c) => c.id === state.characterSelected?.id
+      );
+      
+      if (currentIndex !== -1 && currentIndex < filteredCharacters.length - 1) {
+        state.characterSelected = filteredCharacters[currentIndex + 1];
+      }
+    },
+    selectPreviousCharacter(state, action: PayloadAction<{ filteredCharacters: Character[] }>) {
+      const { filteredCharacters } = action.payload;
+      if (!state.characterSelected || filteredCharacters.length === 0) return;
+      
+      const currentIndex = filteredCharacters.findIndex(
+        (c) => c.id === state.characterSelected?.id
+      );
+      
+      if (currentIndex > 0) {
+        state.characterSelected = filteredCharacters[currentIndex - 1];
+      }
     },
   },
   extraReducers: (builder) => {
@@ -66,6 +91,14 @@ export const charactersSlice = createSlice({
         state.loading = false;
         state.error = action.error.message ?? "Unknown error";
       })
+      .addCase(toggleFavorite.fulfilled, (state, action) => {
+        const item = state.items.find((x) => x.id === action.payload.id);
+        if (item) {
+          item.isFavorite = action.payload.isFavorite;
+          // Actualizar la lista de favoritos
+          state.favorites = state.items.filter((c) => c.isFavorite);
+        }
+      })
       .addCase(toggleFavorite.rejected, (state, action) => {
         state.error = action.error.message ?? "Failed to update favorite";
       });
@@ -73,5 +106,5 @@ export const charactersSlice = createSlice({
 
 });
 
-export const { setFavoriteLocal, setSelected } = charactersSlice.actions;
+  export const { setSelected, setFilteredCharacters, selectNextCharacter, selectPreviousCharacter } = charactersSlice.actions;
 export default charactersSlice.reducer;

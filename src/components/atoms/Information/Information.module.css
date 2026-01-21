@@ -1,5 +1,7 @@
 .information-container {
+    font-size: 12px;
     h3 {
         color: #8FFF00;
+        font-size: 8px;
     }
 }

@@ -40,3 +40,9 @@ a {
     color-scheme: dark;
   }
 }
+
+.app-container {
+  background-image: url('/images/rick-and-morty-background.jpg');
+  height: 100vh;
+  width: 100vw;
+}
