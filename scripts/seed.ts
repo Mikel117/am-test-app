@@ -15,13 +15,16 @@ async function main() {
   }
 
   const characters = allResults.map(
-    ({ id, name, status, image, species, gender }) => ({
+    ({ id, name, status, image, species, gender, location, origin, episode }) => ({
       id: Number(id),
       name,
       status,
       image,
       species,
       gender,
+      location: location.name,
+      origin: origin.name,
+      episodes: episode.length,
       isFavorite: false,
     }),
   );
