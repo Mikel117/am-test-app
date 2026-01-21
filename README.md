@@ -26,7 +26,18 @@ Aplicación web desarrollada con Next.js 16 que consume la API de Rick and Morty
 npm install
 ```
 
-### 2. Configurar la base de datos local
+### 2. Configurar variables de entorno
+
+Crea un archivo `.env.local` en la raíz del proyecto con las siguientes variables:
+
+```env
+JSON_SERVER_URL=http://localhost:4000
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
+```
+
+> **Nota:** Estas variables están configuradas para entorno de desarrollo local. Ajústalas según tu entorno.
+
+### 3. Configurar la base de datos local
 
 Generar datos iniciales para json-server:
 
