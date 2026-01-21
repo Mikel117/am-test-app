@@ -1,11 +1,12 @@
 "use client";
 
-import { CharacterCard, Input } from "@/components";
+import { Button, CharacterCard, FavoritesDropdown, Input } from "@/components";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { useState, useEffect, useRef } from "react";
 import styles from "./SearchGrid.module.css";
 import { Character } from "@/characters/interfaces/characters-reponse";
 import { setSelected, setFilteredCharacters } from "@/store/characters/characters.slice";
+import { IoChevronDown, IoChevronUp } from "react-icons/io5";
 
 export const SearchGrid = () => {
   const dispatch = useAppDispatch();
@@ -177,24 +178,18 @@ export const SearchGrid = () => {
           />
         ))}
       </div>
+      <FavoritesDropdown/>
       <div className={styles.pagination}>
-        {/* <button
-          className={styles.button}
+        <Button
+          icon={<IoChevronUp />} 
           onClick={handlePrev}
           disabled={currentPage === 0}
-        >
-          Anterior
-        </button>
-        <span className={styles.pageInfo}>
-          Página {currentPage + 1} de {totalPages}
-        </span>
-        <button
-          className={styles.button}
+        />
+        <Button
+          icon={<IoChevronDown />} 
           onClick={handleNext}
           disabled={currentPage === totalPages - 1}
-        >
-          Siguiente
-        </button> */}
+        />
       </div>
     </div>
   );

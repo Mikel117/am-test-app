@@ -10,7 +10,7 @@
       "location": "Citadel of Ricks",
       "origin": "Earth (C-137)",
       "episodes": 51,
-      "isFavorite": true
+      "isFavorite": false
     },
     {
       "id": "2",
@@ -22,7 +22,7 @@
       "location": "Citadel of Ricks",
       "origin": "unknown",
       "episodes": 51,
-      "isFavorite": true
+      "isFavorite": false
     },
     {
       "id": "3",
@@ -94,7 +94,7 @@
       "location": "Citadel of Ricks",
       "origin": "unknown",
       "episodes": 1,
-      "isFavorite": true
+      "isFavorite": false
     },
     {
       "id": "9",
@@ -226,7 +226,7 @@
       "location": "unknown",
       "origin": "unknown",
       "episodes": 1,
-      "isFavorite": false
+      "isFavorite": true
     },
     {
       "id": "20",

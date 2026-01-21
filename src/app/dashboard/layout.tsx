@@ -6,7 +6,9 @@ export default function DashboardLayout({children}: {children: React.ReactNode})
         <div className="dashboard-layout">
             <SearchGrid />
             {children}
-            <FavoritesDropdown/>
+            <div className="favorites-container">
+                <FavoritesDropdown/>
+            </div>
         </div>
     )
 }

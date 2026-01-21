@@ -5,3 +5,13 @@
     padding: 20px;
     position: relative;
 }
+
+@media (min-width: 768px) {
+  .characterInformationContainer {
+    padding: 0;
+    background: none;
+    background: #1C1C1C;
+    width: 400px;
+    display: block;
+  }
+}

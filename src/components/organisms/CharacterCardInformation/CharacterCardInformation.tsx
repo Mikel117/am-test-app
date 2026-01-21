@@ -98,11 +98,13 @@ export const CharacterCardInformation = ({ character }: Props) => {
   return (
     <div className={styles.characterCardInformation}>
       {character && (
-        <Button 
-          icon={<IoChevronBack />} 
-          onClick={handlePrevious}
-          disabled={!canGoPrevious()}
-        />
+        <div className={styles['navigation-button']}>
+          <Button 
+            icon={<IoChevronBack />} 
+            onClick={handlePrevious}
+            disabled={!canGoPrevious()}
+          />
+        </div>
       )}
       {character && (
         <div
@@ -156,11 +158,13 @@ export const CharacterCardInformation = ({ character }: Props) => {
         </div>
       )}
       {character && (
-        <Button 
-          icon={<IoChevronForward />} 
-          onClick={handleNext}
-          disabled={!canGoNext()}
-        />
+        <div className={styles['navigation-button']}>
+          <Button 
+            icon={<IoChevronForward />} 
+            onClick={handleNext}
+            disabled={!canGoNext()}
+          />
+        </div>
       )}
     </div>
   );
