@@ -12,6 +12,6 @@
     background: none;
     background: #1C1C1C;
     width: 400px;
-    display: block;
+    border-radius: 20px 0 0 20px;
   }
 }

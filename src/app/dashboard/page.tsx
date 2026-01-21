@@ -22,7 +22,7 @@ export default function CharacterPage() {
   if (isLoading) {
     return (
       <div className={styles.characterInformationContainer}>
-        <div style={{ textAlign: 'center', padding: '2rem' }}>
+        <div style={{ textAlign: 'center', padding: '2rem',  }}>
           Cargando personajes...
         </div>
       </div>
