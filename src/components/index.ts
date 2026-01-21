@@ -6,6 +6,7 @@ export { Information } from './atoms/Information/Information';
 export { CharacterStatus } from './atoms/CharacterStatus/CharacterStatus';
 export { FavoriteOption } from './atoms/FavoriteOption/FavoriteOption';
 export { Button } from './atoms/Button/Button';
+export { LoadingState } from './atoms/LoadingState/LoadingState';
 
 // MOLECULES
 export { CharacterCard } from './molecules/CharacterCard/CharacterCard';

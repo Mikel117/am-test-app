@@ -1,0 +1,26 @@
+.loading-state-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 300px;
+}
+
+.loading-state-message {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.1rem;
+}
+
+.loading-state-message.loading {
+  color: #666;
+}
+
+.loading-state-message.error {
+  color: #ff4444;
+  font-weight: 500;
+}
+
+.loading-state-message.info {
+  color: #666;
+}

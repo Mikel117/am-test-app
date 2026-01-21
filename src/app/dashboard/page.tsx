@@ -1,6 +1,6 @@
 "use client";
 
-import { CharacterCardInformation } from "@/components";
+import { CharacterCardInformation, LoadingState } from "@/components";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { fetchCharacters } from "@/store/characters/characters.slice";
 import { useEffect } from "react";
@@ -22,9 +22,7 @@ export default function CharacterPage() {
   if (isLoading) {
     return (
       <div className={styles.characterInformationContainer}>
-        <div style={{ textAlign: 'center', padding: '2rem',  }}>
-          Cargando personajes...
-        </div>
+        <LoadingState message="Cargando personajes..." type="loading" />
       </div>
     );
   }
@@ -32,9 +30,15 @@ export default function CharacterPage() {
   if (isError) {
     return (
       <div className={styles.characterInformationContainer}>
-        <div style={{ textAlign: 'center', padding: '2rem', color: 'red' }}>
-          Error al cargar personajes
-        </div>
+        <LoadingState message="Error al cargar personajes" type="error" />
+      </div>
+    );
+  }
+
+  if (!selectedCharacter) {
+    return (
+      <div className={styles.characterInformationContainer}>
+        <LoadingState message="No se ha seleccionado ningún personaje." type="info" />
       </div>
     );
   }

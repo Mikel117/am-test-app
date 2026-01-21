@@ -1,7 +1,13 @@
 import useSWR from 'swr';
 import { Character } from '@/characters';
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+const fetcher = async (url: string) => {
+  const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error(`Error ${res.status}: ${res.statusText}`);
+  }
+  return res.json();
+};
 
 export const useCharacters = () => {
   const { data, error, isLoading, mutate } = useSWR<Character[]>(
@@ -18,7 +24,8 @@ export const useCharacters = () => {
   return {
     characters: data || [],
     isLoading,
-    isError: error,
+    isError: !!error,
+    error,
     mutate,
   };
 };
@@ -36,6 +43,7 @@ export const useCharacter = (id: number | null) => {
   return {
     character: data,
     isLoading,
-    isError: error,
+    isError: !!error,
+    error,
   };
 };
