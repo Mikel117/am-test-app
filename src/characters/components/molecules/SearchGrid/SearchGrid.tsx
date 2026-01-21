@@ -100,6 +100,7 @@ export const SearchGrid = () => {
   // Detección de swipe para táctil
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
+    touchEndX.current = e.touches[0].clientX;
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
@@ -107,21 +108,22 @@ export const SearchGrid = () => {
   };
 
   const handleTouchEnd = () => {
-    if (touchStartX.current - touchEndX.current > 75) {
-      // Swipe izquierda -> siguiente
-      handleNext();
+    const diff = touchStartX.current - touchEndX.current;
+    
+    if (Math.abs(diff) > 75) {
+      if (diff > 0) {
+        handleNext();
+      } else {
+        handlePrev();
+      }
     }
-
-    if (touchStartX.current - touchEndX.current < -75) {
-      // Swipe derecha -> anterior
-      handlePrev();
-    }
+    touchStartX.current = 0;
+    touchEndX.current = 0;
   };
-
-  // Soporte para mouse (arrastrar)
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsDragging(true);
     touchStartX.current = e.clientX;
+    touchEndX.current = e.clientX;
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -134,19 +136,22 @@ export const SearchGrid = () => {
     if (!isDragging) return;
     setIsDragging(false);
 
-    if (touchStartX.current - touchEndX.current > 75) {
-      // Arrastrar izquierda -> siguiente
-      handleNext();
+    const diff = touchStartX.current - touchEndX.current;
+    if (Math.abs(diff) > 75) {
+      if (diff > 0) {
+        handleNext();
+      } else {
+        handlePrev();
+      }
     }
-
-    if (touchStartX.current - touchEndX.current < -75) {
-      // Arrastrar derecha -> anterior
-      handlePrev();
-    }
+    touchStartX.current = 0;
+    touchEndX.current = 0;
   };
 
   const handleMouseLeave = () => {
     setIsDragging(false);
+    touchStartX.current = 0;
+    touchEndX.current = 0;
   };
 
   return (
